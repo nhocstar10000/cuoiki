@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">drawerlayout</string>
+    <string name="open">Open Navigation Drawer</string>
+    <string name="close">Close Navigation Drawer</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="exit_content">Would you like to Exit?</string>
+    <string name="exit_caption">Exit application</string>
+</resources>
