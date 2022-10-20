@@ -192,7 +192,7 @@ public class setting extends AppCompatActivity {
     }
 
     public boolean isMoneyExist(Money money){
-        List<Money> list = MoneyDatabase.getInstance(this).mMoneyDAO().checkData(money.getMoney());
+        List<Money> list = MoneyDatabase.getInstance(this).mMoneyDAO().checkData(money.getMoney(),money.getPrice());
         return list != null  && !list.isEmpty();
     }
 

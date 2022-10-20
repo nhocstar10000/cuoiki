@@ -18,6 +18,11 @@ public class Money implements Serializable {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return getMoney();
+    }
+
     public int getId() {
         return id;
     }

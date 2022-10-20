@@ -16,14 +16,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
+
+import dataBase.MoneyDatabase;
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToogle;
+
+    private MoneyAdapter mMoneyAdapter;
+    private List<Money> mMoneyList;
+    Money mMoney;
 
     Button mybtn,so0,so1,so2,so3,so4,so5,so6,so7,so8,so9,xoa;
     TextView txt,mytxt;
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     int checkVND[] = {0,0,0,0,0,0,0,0,0};
     final int moneyUSD[] = {100,50,20,10,5,2,1};
     int checkUSD[] = {0,0,0,0,0,0,0};
+    
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -131,10 +139,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        String[] currency = {"VND", "USD"};
+        List<Money> currency = MoneyDatabase.getInstance(this).mMoneyDAO().getListMoney();
         spin = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter adapter = new ArrayAdapter<String>(MainActivity.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, currency);
+        ArrayAdapter adapter = new ArrayAdapter<Money>(getApplication(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,currency);
         spin.setAdapter(adapter);
+
         mybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -228,6 +237,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+   
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)){
